@@ -1,0 +1,117 @@
+package palabras;
+
+import java.awt.Color;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JOptionPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+
+public class palabras extends JFrame implements ActionListener{
+         
+    private JLabel mensaje;
+    private JLabel mensajepalabra;
+    private JButton boton;
+    //private JTextField caja;
+    private String selectIva;
+    private JComboBox iva;
+    private JTextField caja2;
+    
+    public palabras(){
+        super();
+        configurarVentana();
+        crearComponentes();
+    }
+    private void configurarVentana(){
+        this.setTitle("Ingrese una palabra");
+        this.setSize(300, 200);
+        this.setLocationRelativeTo(null);
+        this.setLayout(null);
+        this.setResizable(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    private void crearComponentes(){
+    
+        mensajepalabra = new JLabel();
+        mensajepalabra.setText("Palabra: ");
+        mensajepalabra.setBounds(80,30,100,20);//(x,y,ancho,alto)
+        mensajepalabra.setForeground(Color.red);
+        this .add(mensajepalabra);
+        
+       /* caja = new JTextField();
+        caja.setBounds(80,60,50,30);//(x,y,ancho,alto)
+        this.add(caja);
+        */
+        
+        caja2 = new JTextField();
+        caja2.setBounds(130,28,70,30);//(x,y,ancho,alto)
+        this.add(caja2);
+        
+        boton = new JButton();
+        boton.setText("Verificar");
+        boton.setBounds(80,80,100,30);//(x,y,ancho,alto)
+        boton.addActionListener(this);
+        this.add(boton);
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e){
+        
+        String palabra = "";
+        String[] palabras = caja2.getText().split(" ");
+        for (int i = 0; i < palabras.length; i++) {
+            palabra += palabras[i].trim();
+        }
+        char[] longitud = palabra.toCharArray();
+        char[] arrinverso = new char[longitud.length];
+            int j = 0;
+            String palindromo;
+        for (int i = longitud.length-1; i >= 0; i--) {
+            arrinverso[j] = longitud[i];
+            j++;
+        }
+        String inversa = String.valueOf(arrinverso);
+        
+        if (palabra.equals(inversa)) {
+            palindromo = "si";
+        } else {
+            palindromo = "no";
+        }
+        
+        int cont = 0;
+        int moda = 0;
+        char letraRepetida = ' ';
+        char letra;
+        
+        for(int p = 0; p < palabra.length(); p++){
+            letra = palabra.charAt(p);
+            for (int k = 0; k < palabra.length(); k++) {
+                if(letra == palabra.charAt(k)){
+                    cont++;
+                }
+            }
+            if(cont > moda){
+                moda = cont;
+                letraRepetida = letra;
+            }
+            cont = 0;
+        }
+        
+        Mensaje me = new Mensaje(palabra, inversa, longitud.length, palindromo, letraRepetida, moda);
+        
+//        JOptionPane.showMessageDialog(this, " La palabra es: " + palabra);
+//        JOptionPane.showMessageDialog(this, " La longitud es: " + longitud.length);
+//        JOptionPane.showMessageDialog(this, " El inverso es: " + inversa);
+//        JOptionPane.showMessageDialog(this, "Palindromo: " + palindromo);
+    }
+    
+    public static void main(String[] args){
+      
+      palabras ventana = new palabras();
+      ventana.setVisible(true);
+    }
+}
