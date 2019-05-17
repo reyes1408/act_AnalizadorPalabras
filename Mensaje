@@ -1,0 +1,57 @@
+package palabras;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+/**
+ * @author LENOVO
+ */
+public class Mensaje {
+   
+    private JFrame f = new JFrame("Inforamacion");
+    
+    public Mensaje (String pala, String invert, int longi, String palind, char lRep, int moda){
+	
+        f.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        f.setSize(300,300);
+        f.setVisible(true);
+        
+        
+        
+        JLabel lblPal = new JLabel("Palabra: "+pala);
+        lblPal.setBounds(50,10,150,20);//(x,y,ancho,alto)
+        f.add(lblPal);
+        
+        JLabel lblLong = new JLabel();
+        lblLong.setText("Longitud: "+longi);
+        lblLong.setBounds(50,40,150,20);//(x,y,ancho,alto)
+        f.add(lblLong);
+        
+        JLabel lblPalind = new JLabel("Palindromo: "+palind);
+        lblPalind.setBounds(50,70,150,20);//(x,y,ancho,alto)
+        f.add(lblPalind);
+        
+        JLabel lblInversa = new JLabel();
+        lblInversa.setText("Inversa: "+invert);
+        lblInversa.setBounds(50,100,150,20);//(x,y,ancho,alto)
+        f.add(lblInversa);
+        
+        JLabel lblRep = new JLabel("Letra repetida: "+"'"+lRep+"'"+" se repite "+moda+" veces");
+        lblRep.setBounds(50,130,210,20);//(x,y,ancho,alto)
+        f.add(lblRep);
+   
+        JLabel nada = new JLabel();
+        lblInversa.setBounds(50,100,150,20);//(x,y,ancho,alto)
+        f.add(nada);
+    }
+
+    void setLayout(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void setLocationRelativeTo(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+}
